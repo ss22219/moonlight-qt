@@ -158,6 +158,7 @@ public:
     Q_PROPERTY(Language language MEMBER language NOTIFY languageChanged)
     Q_PROPERTY(int customScreenMode MEMBER customScreenMode NOTIFY customScreenModeChanged)
     Q_PROPERTY(bool enableMicrophone MEMBER enableMicrophone NOTIFY enableMicrophoneChanged)
+    Q_PROPERTY(bool monitorOnlyMode MEMBER monitorOnlyMode NOTIFY monitorOnlyModeChanged)
 
     Q_INVOKABLE bool retranslate();
 
@@ -213,6 +214,7 @@ public:
     CaptureSysKeysMode captureSysKeysMode;
     int customScreenMode;
     bool enableMicrophone;
+    bool monitorOnlyMode;
 
 signals:
     void displayModeChanged();
@@ -263,6 +265,7 @@ signals:
     void languageChanged();
     void customScreenModeChanged();
     void enableMicrophoneChanged();
+    void monitorOnlyModeChanged();
 
 private:
     explicit StreamingPreferences(QQmlEngine *qmlEngine);

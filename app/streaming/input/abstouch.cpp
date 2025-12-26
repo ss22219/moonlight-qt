@@ -64,6 +64,11 @@ void SdlInputHandler::disableTouchFeedback()
 
 void SdlInputHandler::handleAbsoluteFingerEvent(SDL_TouchFingerEvent* event)
 {
+    // 监控模式下不处理绝对触摸输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     SDL_Rect src, dst;
     int windowWidth, windowHeight;
 
@@ -153,6 +158,11 @@ void SdlInputHandler::handleAbsoluteFingerEvent(SDL_TouchFingerEvent* event)
 
 void SdlInputHandler::emulateAbsoluteFingerEvent(SDL_TouchFingerEvent* event)
 {
+    // 监控模式下不处理模拟绝对触摸输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     // Observations on Windows 10: x and y appear to be relative to 0,0 of the window client area.
     // Although SDL documentation states they are 0.0 - 1.0 float values, they can actually be higher
     // or lower than those values as touch events continue for touches started within the client area that

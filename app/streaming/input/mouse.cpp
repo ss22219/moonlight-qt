@@ -6,6 +6,11 @@
 
 void SdlInputHandler::handleMouseButtonEvent(SDL_MouseButtonEvent* event)
 {
+    // 监控模式下不处理鼠标按键输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     int button;
 
     if (event->which == SDL_TOUCH_MOUSEID) {
@@ -70,6 +75,11 @@ void SdlInputHandler::handleMouseButtonEvent(SDL_MouseButtonEvent* event)
 
 void SdlInputHandler::handleMouseMotionEvent(SDL_MouseMotionEvent* event)
 {
+    // 监控模式下不处理鼠标移动输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     if (!isCaptureActive()) {
         // Not capturing
         return;
@@ -156,6 +166,11 @@ void SdlInputHandler::handleMouseMotionEvent(SDL_MouseMotionEvent* event)
 
 void SdlInputHandler::handleMouseWheelEvent(SDL_MouseWheelEvent* event)
 {
+    // 监控模式下不处理鼠标滚轮输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     if (!isCaptureActive()) {
         // Not capturing
         return;

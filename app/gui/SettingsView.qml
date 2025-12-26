@@ -1889,6 +1889,22 @@ Flickable {
                     ToolTip.visible: hovered
                     ToolTip.text: qsTr("Allows Moonlight to capture gamepad inputs even if it's not the current window in focus")
                 }
+
+                CheckBox {
+                    id: monitorOnlyModeCheck
+                    width: parent.width
+                    text: qsTr("Monitor only mode (disable all input)")
+                    font.pointSize: 12
+                    checked: StreamingPreferences.monitorOnlyMode
+                    onCheckedChanged: {
+                        StreamingPreferences.monitorOnlyMode = checked
+                    }
+
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.visible: hovered
+                    ToolTip.text: qsTr("Enable this to only view the stream without sending any input to the host. Perfect for monitoring or watching gameplay.")
+                }
             }
         }
 

@@ -64,6 +64,7 @@
 #define SER_CUSTOMSCREENMODE "customscreenmode"
 #define SER_SHOWLOCALCURSOR "showLocalCursor"
 #define SER_MICROPHONE "microphone"
+#define SER_MONITORONLY "monitoronly"
 
 #define CURRENT_DEFAULT_VER 2
 
@@ -151,6 +152,7 @@ void StreamingPreferences::reload()
     framePacing = settings.value(SER_FRAMEPACING, false).toBool();
     videoEnhancement = settings.value(SER_VIDEOENHANCEMENT, false).toBool();
     enableMicrophone = settings.value(SER_MICROPHONE, false).toBool();
+    monitorOnlyMode = settings.value(SER_MONITORONLY, false).toBool();
 
     streamResolutionScale = settings.value(SER_STREAMRESOLUTIONSCALE, false).toBool();
     streamResolutionScaleRatio = settings.value(SER_STREAMRESOLUTIONSCALERATIO, 100).toInt();
@@ -395,6 +397,7 @@ void StreamingPreferences::save()
     settings.setValue(SER_KEEPAWAKE, keepAwake);
     settings.setValue(SER_CUSTOMSCREENMODE, customScreenMode);
     settings.setValue(SER_MICROPHONE, enableMicrophone);
+    settings.setValue(SER_MONITORONLY, monitorOnlyMode);
 }
 
 int StreamingPreferences::getDefaultBitrate(int width, int height, int fps, bool yuv444)

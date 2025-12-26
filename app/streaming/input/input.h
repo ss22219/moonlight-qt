@@ -209,6 +209,7 @@ private:
     bool m_SwapWinAltKeys;
     bool m_ReverseScrollDirection;
     bool m_SwapFaceButtons;
+    bool m_MonitorOnlyMode;
 
     bool m_MouseWasInVideoRegion;
     bool m_PendingMouseButtonsAllUpOnVideoRegionLeave;

@@ -46,6 +46,11 @@ Uint32 SdlInputHandler::dragTimerCallback(Uint32, void *param)
 
 void SdlInputHandler::handleRelativeFingerEvent(SDL_TouchFingerEvent* event)
 {
+    // 监控模式下不处理相对触摸输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     int fingerIndex = -1;
 
     // Observations on Windows 10: x and y appear to be relative to 0,0 of the window client area.

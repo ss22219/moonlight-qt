@@ -190,6 +190,11 @@ Uint32 SdlInputHandler::mouseEmulationTimerCallback(Uint32 interval, void *param
 
 void SdlInputHandler::handleControllerAxisEvent(SDL_ControllerAxisEvent* event)
 {
+    // 监控模式下不处理手柄摇杆输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     SDL_JoystickID gameControllerId = event->which;
     GamepadState* state = findStateForGamepad(gameControllerId);
     if (state == NULL) {
@@ -254,6 +259,11 @@ void SdlInputHandler::handleControllerAxisEvent(SDL_ControllerAxisEvent* event)
 
 void SdlInputHandler::handleControllerButtonEvent(SDL_ControllerButtonEvent* event)
 {
+    // 监控模式下不处理手柄按键输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     if (event->button >= SDL_arraysize(k_ButtonMap)) {
         SDL_LogWarn(SDL_LOG_CATEGORY_APPLICATION,
                     "No mapping for gamepad button: %u",
@@ -405,6 +415,11 @@ void SdlInputHandler::handleControllerButtonEvent(SDL_ControllerButtonEvent* eve
 
 void SdlInputHandler::handleControllerSensorEvent(SDL_ControllerSensorEvent* event)
 {
+    // 监控模式下不处理传感器输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     GamepadState* state = findStateForGamepad(event->which);
     if (state == NULL) {
         return;
@@ -440,6 +455,11 @@ void SdlInputHandler::handleControllerSensorEvent(SDL_ControllerSensorEvent* eve
 
 void SdlInputHandler::handleControllerTouchpadEvent(SDL_ControllerTouchpadEvent* event)
 {
+    // 监控模式下不处理触摸板输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     GamepadState* state = findStateForGamepad(event->which);
     if (state == NULL) {
         return;

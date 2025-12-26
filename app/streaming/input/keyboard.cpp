@@ -161,6 +161,11 @@ void SdlInputHandler::performSpecialKeyCombo(KeyCombo combo)
 
 void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
 {
+    // 监控模式下不处理键盘输入
+    if (m_MonitorOnlyMode) {
+        return;
+    }
+
     short keyCode;
     char modifiers;
     bool shouldNotConvertToScanCodeOnServer = false;
